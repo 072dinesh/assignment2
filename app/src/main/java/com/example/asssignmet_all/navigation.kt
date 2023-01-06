@@ -17,9 +17,10 @@ import kotlinx.android.synthetic.main.activity_navigation.*
 
 class navigation : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
+    lateinit var drew:DrawerLayout
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
-        
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
 
@@ -90,7 +91,7 @@ class navigation : AppCompatActivity() {
 
 
 
-        var drew =findViewById<DrawerLayout>(R.id.drawerLayout)
+         drew =findViewById<DrawerLayout>(R.id.drawerLayout)
 
         toggle= ActionBarDrawerToggle(this, drew, R.string.open,R.string.close)
         drew.addDrawerListener(toggle)
@@ -112,15 +113,18 @@ class navigation : AppCompatActivity() {
 
             when(it.itemId)
             {
-                R.id.mitItem1->new()
+                R.id.mitItem1->changeFragment1(paymentFragment())
 
-                R.id.mitItem2-> new2()
+                R.id.mitItem2-> changeFragment1(addressFragment())
 
-                R.id.mitItem3-> new3()
+                R.id.mitItem3-> changeFragment1(passFragment())
 
-                R.id.mitItem4 -> new4()
+                R.id.mitItem5 -> changeFragment1(houseFragment())
+
+
+
             }
-            true
+
 
 
             true
@@ -149,7 +153,10 @@ class navigation : AppCompatActivity() {
 
             return true
         }
-
+//        if(item.itemId==R.id.mitItem1)
+//        {
+//
+//        }
 
 
         return super.onOptionsItemSelected(item)
@@ -169,4 +176,16 @@ class navigation : AppCompatActivity() {
 
 
     }
+
+    private fun changeFragment1(fragment : Fragment)
+    {
+        val fragmentmanger =  supportFragmentManager
+        val fragmenttransaction =  fragmentmanger.beginTransaction()
+        fragmenttransaction.replace(R.id.dash_frame,fragment)
+        fragmenttransaction.commit()
+        drew.closeDrawers()
+
+
+    }
+
 }

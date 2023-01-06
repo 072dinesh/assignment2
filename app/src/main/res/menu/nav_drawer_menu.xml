@@ -6,21 +6,25 @@
 
     <item
         android:id="@+id/mitItem1"
-        android:icon="@android:drawable/ic_menu_share"
-        android:title="Share app with friends"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Payment method"
 
-        />
+    />
 
     <item
         android:id="@+id/mitItem2"
         android:icon="@android:drawable/sym_action_email"
-        android:title="Feedback" />
+        android:title="Addresses" />
 
     <item
         android:id="@+id/mitItem3"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:title="About App" />
+        android:icon="@drawable/ic_baseline_wifi_password_24"
+        android:title="Password" />
 
+    <item
+        android:id="@+id/mitItem5"
+        android:icon="@drawable/ic_baseline_house_24"
+        android:title="Household and other as per the design provided" />
 
 
 </group>
