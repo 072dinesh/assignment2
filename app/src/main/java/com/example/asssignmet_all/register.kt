@@ -58,6 +58,7 @@ class register : AppCompatActivity() {
 
 
 
+
             """*****"""
 
 //            val cursor = db.getName()

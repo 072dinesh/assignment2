@@ -37,7 +37,7 @@ class loginscreen : AppCompatActivity() {
         temail = findViewById(R.id.email)
         tpassword = findViewById(R.id.password)
        btnlogin = findViewById(R.id.login)
-        txtch = findViewById(R.id.cheks)
+        //txtch = findViewById(R.id.cheks)
 
         Sin.setOnClickListener {
 
@@ -122,10 +122,11 @@ class loginscreen : AppCompatActivity() {
                 editor.apply()
                 editor.commit()
 
-                Toast.makeText(applicationContext, "recode", Toast.LENGTH_LONG).show()
+
 
                 var intent =  Intent(applicationContext,navigation::class.java)
                 startActivity(intent)
+                Toast.makeText(applicationContext, "recode", Toast.LENGTH_LONG).show()
 
             } else {
                 Toast.makeText(applicationContext, "Invalid Credential", Toast.LENGTH_LONG).show()

@@ -4,28 +4,59 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.database.Cursor
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import com.google.android.material.navigation.NavigationView
+import kotlinx.android.synthetic.main.activity_dashboardscreen.*
 import kotlinx.android.synthetic.main.activity_navigation.*
+import kotlinx.android.synthetic.main.nevhead.*
 
 class navigation : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var drew:DrawerLayout
-    @SuppressLint("MissingInflatedId")
+    lateinit var naviga : NavigationView
+    lateinit var cursor:Cursor
+    @SuppressLint("MissingInflatedId", "Range")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
 
         var preference: SharedPreferences =getSharedPreferences("mypres", Context.MODE_PRIVATE)
-        var savestring2 = preference.getString("e_email","email")
+        var savestring2 = preference.getString("e_email","")
+
+
+
+
+        naviga=findViewById(R.id.navview)
+        var a = naviga.inflateHeaderView(R.layout.nevhead)
+        var viewa = a.findViewById<TextView>(R.id.hhid)
+
+        viewa.text = savestring2
+        //viewa.text = helper
+//
+//            val db = DBHelerlogin(this, null)
+//            var name:String
+//            val cursor = db.getName()
+//
+//            cursor!!.moveToFirst()
+//        hhid.append(cursor.getString(cursor.getColumnIndex(DBHelerlogin.NAME_COl)) + "\n")
+
+
+
+
+
+
+
+
         changeFragment(PFragment())
         bottomNavigationView.setOnItemSelectedListener{
             when(it.itemId)
@@ -45,55 +76,13 @@ class navigation : AppCompatActivity() {
         }
 
 
-        fun new()
-        {
-
-            val sharein = Intent()
-            sharein.action = Intent.ACTION_SEND
-            sharein.type = "text/plain"
-            sharein.putExtra(
-                Intent.EXTRA_TEXT,
-                "https://play.google.com/store/apps/details?id= hi"
-            )
-            startActivity(Intent.createChooser(sharein, "Share With App..."))
-        }
-
-        fun new2()
-        {
-            val Email = Intent(Intent.ACTION_SEND)
-            Email.type = "text/email"
-            Email.putExtra(Intent.EXTRA_EMAIL, arrayOf(" "))
-            Email.putExtra(Intent.EXTRA_SUBJECT, "Feedback")
-            Email.putExtra(Intent.EXTRA_TEXT, "Dear ...," + "")
-            startActivity(Email)
-
-        }
-
-        fun new3()
-        {
-
-//            val intent = Intent(this, about::class.java)
-//            startActivity(intent)
-
-            Toast.makeText(this, "Email and Password successfully", Toast.LENGTH_LONG).show()
-
-        }
-
-        fun new4()
-        {
-            Toast.makeText(this, "Email and Password successfully", Toast.LENGTH_LONG).show()
-//            val intent = Intent(this, loginss::class.java)
-//            startActivity(intent)
-//            finish()
-        }
-
-
 
 
 
          drew =findViewById<DrawerLayout>(R.id.drawerLayout)
 
         toggle= ActionBarDrawerToggle(this, drew, R.string.open,R.string.close)
+
         drew.addDrawerListener(toggle)
         toggle.syncState()
 
@@ -153,10 +142,15 @@ class navigation : AppCompatActivity() {
 
             return true
         }
-//        if(item.itemId==R.id.mitItem1)
-//        {
-//
-//        }
+        if(item.itemId==R.id.first)
+        {
+            var preference: SharedPreferences = getSharedPreferences("mypres", Context.MODE_PRIVATE)
+          var editor: SharedPreferences.Editor = preference.edit()
+            editor.clear()
+            editor.commit()
+            var intent = Intent(applicationContext, loginscreen::class.java)
+            startActivity(intent)
+        }
 
 
         return super.onOptionsItemSelected(item)

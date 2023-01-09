@@ -1,5 +1,7 @@
 package com.example.asssignmet_all
 
+import android.annotation.SuppressLint
+import android.app.Application
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
@@ -20,8 +22,8 @@ class DBHelerlogin(context: Context,fac:SQLiteDatabase.CursorFactory?): SQLiteOp
     }
 
     override fun onUpgrade(db: SQLiteDatabase, p1: Int, p2: Int) {
-        //db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME)
-        //onCreate(db)
+        db.execSQL("DROP TABLE IF EXISTS " +TABLE_NAME)
+        onCreate(db)
     }
    open fun addNames(name : String, email : String, password : String ){
 
@@ -46,14 +48,29 @@ class DBHelerlogin(context: Context,fac:SQLiteDatabase.CursorFactory?): SQLiteOp
 
     }
 
+    @SuppressLint("Range")
+    fun getOneName(name: String): Companion? {
+        val db = this.writableDatabase
+        val selectQuery = "SELECT  NAME FROM $TABLE_NAME WHERE $EMAIL_COL = ?"
+        db.rawQuery(selectQuery, arrayOf(name)).use { // .use requires API 16
+            if (it.moveToFirst()) {
+                val result = DBHelerlogin
+                //result.ID_COL = it.getInt(it.getColumnIndex(ID_COL)).toString()
+                result.NAME_COl = it.getString(it.getColumnIndex(NAME_COl))
+                return result
+            }
+        }
+        return null
+    }
+
     companion object{
 
         private val DATABASE_NAME = "student"
         private val DATABASE_VERSION = 1
 
         val TABLE_NAME = "stdss"
-        val ID_COL = "id"
-        val NAME_COl = "name"
+        var ID_COL = "id"
+        var NAME_COl = "name"
         val EMAIL_COL = "email"
         val PASS_COL ="passwords"
     }

@@ -11,10 +11,20 @@
     tools:context=".loginscreen">
 
 
+    <View
+        android:id="@+id/header_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/loginhed">
+
+    </View>
+
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Login"
+        android:layout_gravity="center"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="@color/black"
@@ -85,7 +95,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
             android:layout_weight="1"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:background="@drawable/reples"
             android:text="LOGIN"
             android:textSize="10sp" />
@@ -95,22 +105,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:layout_weight="1"
             android:background="@drawable/reples"
             android:text="SIGNUP"
             android:textSize="10sp" />
     </LinearLayout>
+    <View
+        android:id="@+id/header_viewd"
+        android:layout_marginTop="10dp"
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-           android:id="@+id/cheks"
-            android:text="viewe"
-            >
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/logbot">
 
-        </TextView>
-
+    </View>
 
 
 </LinearLayout>

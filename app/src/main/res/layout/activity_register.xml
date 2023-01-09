@@ -10,6 +10,14 @@
     android:layout_height="match_parent"
     tools:context=".register">
 
+    <View
+        android:id="@+id/header_view"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/loginhed">
+
+    </View>
+
 
     <TextView
         android:layout_width="wrap_content"
@@ -104,7 +112,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_margin="5dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:background="@drawable/reples"
             android:textSize="15sp"
             android:text="Registration" />
@@ -113,7 +121,7 @@
             android:id="@+id/views"
             android:textSize="15sp"
             android:layout_margin="5dp"
-            android:textColor="@color/black"
+            android:textColor="@color/white"
             android:background="@drawable/reples"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -123,6 +131,15 @@
 
 
 
+    <View
+        android:id="@+id/header_viewd"
+        android:layout_marginTop="10dp"
+
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:background="@drawable/logbot">
+
+    </View>
 
 
 
