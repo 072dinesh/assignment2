@@ -6,6 +6,8 @@ import android.content.Intent
 import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.TextUtils
+import android.util.Patterns
 import android.view.*
 import android.widget.Button
 import android.widget.EditText
@@ -38,22 +40,8 @@ class register : AppCompatActivity() {
 
         btnadddata.setOnClickListener {
 
-            val db = DBHelerlogin(this, null)
 
-            val name = txtname.text.toString()
-            val email = txtemail.text.toString()
-            val password = txtpass.text.toString()
-
-            db.addNames(name, email, password)
-
-            Toast.makeText(this, name + " added to database", Toast.LENGTH_LONG).show()
-
-            txtname.text.clear()
-            txtemail.text.clear()
-            txtpass.text.clear()
-
-            val intent = Intent(this, loginscreen::class.java)
-            startActivity(intent)
+            res()
 
 
 
@@ -214,4 +202,63 @@ class register : AppCompatActivity() {
 
 
     }
+
+
+
+
+
+    public fun res()
+    {
+        var p = Patterns.EMAIL_ADDRESS
+
+        if (TextUtils.isEmpty(txtname.text.toString()))
+        {
+            txtname.setError("Enter the name")
+            txtname.requestFocus()
+        }
+        else if(TextUtils.isEmpty(txtemail.text.toString()))
+        {
+            txtemail.setError("Please Enter The Password")
+            txtemail.requestFocus()
+        }
+        else if(!Patterns.EMAIL_ADDRESS.matcher(txtemail.text.toString()).matches())
+        {
+            txtemail.setError("Enter the proper format of email")
+            txtemail.requestFocus()
+        }
+
+        else if(TextUtils.isEmpty(txtpass.text.toString()))
+        {
+            txtpass.setError("Enter the password")
+            txtpass.requestFocus()
+        }
+
+
+
+        else {
+            val db = DBHelerlogin(this, null)
+
+            val name = txtname.text.toString()
+            val email = txtemail.text.toString()
+            val password = txtpass.text.toString()
+
+            db.addNames(name, email, password)
+
+            Toast.makeText(this, name + " added to database", Toast.LENGTH_LONG).show()
+
+            txtname.text.clear()
+            txtemail.text.clear()
+            txtpass.text.clear()
+
+            val intent = Intent(this, loginscreen::class.java)
+            startActivity(intent)
+
+
+        }
+
+
+    }
+
+
+
 }

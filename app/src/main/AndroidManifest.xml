@@ -31,6 +31,7 @@
 
         <activity
             android:name=".loginscreen"
+
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

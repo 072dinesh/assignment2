@@ -16,7 +16,7 @@ class dashboardscreen : AppCompatActivity() {
         setContentView(R.layout.activity_dashboardscreen)
 
         var preference: SharedPreferences =getSharedPreferences("mypres", Context.MODE_PRIVATE)
-           var savestring2 = preference.getString("e_email","email")
+           var savestring2 = preference.getString("e_email","")
 
         hid.text = savestring2
         var viewpageall = viewpagesjis//XML NAME

@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.database.Cursor
+import android.database.sqlite.SQLiteDatabase
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
@@ -23,24 +24,35 @@ class navigation : AppCompatActivity() {
     lateinit var toggle: ActionBarDrawerToggle
     lateinit var drew:DrawerLayout
     lateinit var naviga : NavigationView
+    lateinit var db:SQLiteDatabase
     lateinit var cursor:Cursor
     @SuppressLint("MissingInflatedId", "Range")
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
-
+    var helper = DBHelerlogin(this,null)
+        db = helper.readableDatabase
         var preference: SharedPreferences =getSharedPreferences("mypres", Context.MODE_PRIVATE)
-        var savestring2 = preference.getString("e_email","")
+        var savestring2 = preference.getString("e_email","").toString()
 
 
 
 
         naviga=findViewById(R.id.navview)
+
         var a = naviga.inflateHeaderView(R.layout.nevhead)
+
+        var bsheder = a.findViewById<TextView>(R.id.textView2)
         var viewa = a.findViewById<TextView>(R.id.hhid)
 
         viewa.text = savestring2
+        var args = listOf<String>(savestring2).toTypedArray()
+        var rs =db.rawQuery("SELECT name FROM stdss WHERE email = ? LIMIT 1",args)
+        rs.moveToNext()
+
+        bsheder.text=rs.getString(rs.getColumnIndex("name"))
+
         //viewa.text = helper
 //
 //            val db = DBHelerlogin(this, null)
@@ -49,10 +61,6 @@ class navigation : AppCompatActivity() {
 //
 //            cursor!!.moveToFirst()
 //        hhid.append(cursor.getString(cursor.getColumnIndex(DBHelerlogin.NAME_COl)) + "\n")
-
-
-
-
 
 
 
@@ -135,6 +143,7 @@ class navigation : AppCompatActivity() {
 
 
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if(toggle.onOptionsItemSelected(item))
         {

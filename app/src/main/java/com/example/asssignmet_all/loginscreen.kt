@@ -47,7 +47,7 @@ class loginscreen : AppCompatActivity() {
 
     btnlogin.setOnClickListener {
 
-        a()
+        login_data()
 }
 
 
@@ -95,19 +95,26 @@ class loginscreen : AppCompatActivity() {
 
     }
 
-    public fun a()
+    public fun login_data()
     {
         var p = Patterns.EMAIL_ADDRESS
         if (TextUtils.isEmpty(temail.text.toString()))
         {
-            temail.setError("Enter the name")
+            temail.setError("Please Enter The Email")
             temail.requestFocus()
         }
+
         else if(TextUtils.isEmpty(tpassword.text.toString()))
         {
             tpassword.setError("Enter the password")
             tpassword.requestFocus()
         }
+        else if (!Patterns.EMAIL_ADDRESS.matcher(temail.text.toString()).matches()){
+
+            temail.setError("Enter the properly")
+            temail.requestFocus()
+        }
+
         else {
 
 
